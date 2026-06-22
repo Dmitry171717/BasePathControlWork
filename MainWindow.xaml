@@ -1,0 +1,77 @@
+﻿<Window x:Class="Controlnaya.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Контрольная работа — Метод базового пути — Вариант 6" Height="650" Width="1000">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Ввод параметров -->
+        <GroupBox Header="Вычисление y(x,a,b,c)" Grid.Row="0" Margin="0,0,0,5">
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Label Content="a="/>
+                <TextBox x:Name="tbA" Width="50" Margin="2,0,10,0"/>
+                <Label Content="b="/>
+                <TextBox x:Name="tbB" Width="50" Margin="2,0,10,0"/>
+                <Label Content="c="/>
+                <TextBox x:Name="tbC" Width="50" Margin="2,0,10,0"/>
+                <Label Content="x="/>
+                <TextBox x:Name="tbX" Width="50" Margin="2,0,10,0"/>
+                <Button Content="Вычислить" Width="90" Click="BtnCalc_Click" Margin="0,0,10,0"/>
+                <Label x:Name="lblResult" Content="y = " FontWeight="Bold"/>
+            </StackPanel>
+        </GroupBox>
+
+        <!-- Кнопки тестирования -->
+        <GroupBox Header="Тестирование методом базового пути" Grid.Row="1" Margin="0,0,0,5">
+            <StackPanel Margin="5">
+                <WrapPanel Orientation="Horizontal">
+                    <Button Content="Путь 1" Width="65" Height="28" Click="BtnPath1_Click" Margin="0,0,4,4"/>
+                    <Button Content="Путь 2" Width="65" Height="28" Click="BtnPath2_Click" Margin="0,0,4,4"/>
+                    <Button Content="Путь 3" Width="65" Height="28" Click="BtnPath3_Click" Margin="0,0,4,4"/>
+                    <Button Content="Путь 4" Width="65" Height="28" Click="BtnPath4_Click" Margin="0,0,4,4"/>
+                    <Button Content="Путь 5" Width="65" Height="28" Click="BtnPath5_Click" Margin="0,0,4,4"/>
+                    <Button Content="Все пути" Width="80" Height="28" Click="BtnAllPaths_Click" Margin="0,0,16,4"/>
+                    <Button Content="Граф" Width="80" Height="28" Click="BtnGraph_Click" Margin="0,0,4,4"/>
+                    <Button Content="Блок-схема" Width="90" Height="28" Click="BtnFlowchart_Click" Margin="0,0,4,4"/>
+                    <Button Content="Метрики" Width="80" Height="28" Click="BtnMetrics_Click" Margin="0,0,4,4"/>
+                    <Button Content="Задание" Width="80" Height="28" Click="BtnTask_Click" Margin="0,0,4,4"/>
+                    <Button Content="Сравнение" Width="90" Height="28" Click="BtnCompare_Click" Margin="0,0,4,4"/>
+                </WrapPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                    <Label x:Name="lblStats" Content="" FontWeight="Bold" Foreground="DarkBlue" Margin="0,0,15,0"/>
+                    <Label x:Name="lblTested" Content="" FontStyle="Italic" Foreground="DarkGreen"/>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+
+        <!-- Таблица и диаграмма -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="300"/>
+            </Grid.ColumnDefinitions>
+
+            <DataGrid x:Name="dgTests" Grid.Column="0" AutoGenerateColumns="False"
+                      IsReadOnly="True" Margin="0,0,5,0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Путь" Binding="{Binding PathName}" Width="70"/>
+                    <DataGridTextColumn Header="Входные данные" Binding="{Binding Inputs}" Width="220"/>
+                    <DataGridTextColumn Header="Ожидаемое" Binding="{Binding Expected}" Width="110"/>
+                    <DataGridTextColumn Header="Реальное" Binding="{Binding Actual}" Width="110"/>
+                    <DataGridTextColumn Header="Результат" Binding="{Binding Passed}" Width="90"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Canvas x:Name="chartCanvas" Grid.Column="1" Background="White" Margin="5,0,0,0"/>
+        </Grid>
+
+        <Label Grid.Row="3"
+               Content="Вариант 6: y = a·x³+b²+c (x&lt;0,b≠0) | y = (x-a)/c (x&gt;0,c≠0) | y = 15x/c (иначе).  V(G) = 5, базовых путей — 5"
+               FontStyle="Italic" Foreground="Gray"/>
+    </Grid>
+</Window>
